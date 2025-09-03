@@ -1,0 +1,264 @@
+/* ================== ПЕРЕМЕННЫЕ ================== */
+:root {
+  --pink: rgba(249, 189, 189, 1);
+  --mustard: #e7a427;
+  --ink: #2a2a2a;
+  --muted: #6a6a6a;
+  --bg: #ffffff;
+  --edge: #efefef;
+
+  /* ширина правого визуала в футере */
+ --footer-visual-w: clamp(480px, 44vw, 720px);
+}
+
+/* ================== КАРКАС ================== */
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration: none; }
+
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+main.container { flex: 1 0 auto; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+/* Розовая полоса фоном только на Home */
+.home-bg {
+  background: linear-gradient(to right, transparent 0 60%, var(--pink) 60% 100%);
+}
+
+/* ================== НАВИГАЦИЯ ================== */
+.nav {
+  position: static;
+  top: auto;
+  background: transparent;
+  border-bottom: none;
+  z-index: auto;
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: 0.25em; }
+.brand img, .brand-logo { height: 32px; width: auto; display: block; object-fit: contain; }
+.nav-links { display: flex; gap: 28px; }
+.nav-links a { color: #666; font-size: 0.95rem; }
+.nav-links a.active { color: var(--ink); font-weight: 600; }
+
+/* ================== HERO ================== */
+.hero { padding: 56px 0 32px; }
+.hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 28px; }
+.eyebrow { color: var(--muted); font-size: 1.1rem; }
+.hero-copy h1 { font-size: 56px; line-height: 1.05; margin: 12px 0 24px; font-weight: 800; }
+.hero-copy h1 span { display: block; }
+/* если у картинки в Hero есть класс */
+.hero-img { justify-self: end; max-width: 560px; width: 100%; height: auto; }
+
+/* Кнопки */
+.btn { display: inline-block; padding: 12px 18px; border-radius: 8px; font-weight: 600; }
+.btn-primary { background: var(--mustard); color: #fff; }
+.btn-secondary { background: var(--mustard); color: #fff; margin-top: 10px; }
+.btn:focus { outline: 3px solid rgba(0,0,0,.1); outline-offset: 2px; }
+
+/* ================== ШАПКА СЕКЦИИ (иконка + линия + слово справа) ================== */
+.section { padding: 60px 0; }
+
+.section-header{
+  display: grid;
+  grid-template-columns: 1fr auto; /* линия заполняет только левую колонку */
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.section-header .ghost{
+  position: static;                
+  margin: -10px 0 0 16px;          
+  font-size: 46px;
+  color: #e9e9e9;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+}
+
+/* Крупная "eyebrow"-строка с иконкой и линией */
+.eyebrow-lg{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:24px;
+  font-weight:700;
+  color: var(--ink);
+}
+.section-header .eyebrow-lg::after{
+  content:"";
+  flex:1 1 auto;             /* линия тянется до границы 1-й колонки */
+  height:2px;
+  background:var(--edge);
+  border-radius:999px;
+  margin-left:16px;
+}
+.eyebrow-icon{ width: 28px; height: auto; display: block; }
+
+/* ================== ABOUT ================== */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; }
+.about-art { position: relative; }
+.shape { display: none !important; }
+.about-copy h3 { font-size: 28px; margin: 0 0 12px; }
+.about-copy p { color: var(--muted); }
+
+/* ================== CARDS (категории) ================== */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:22px;
+}
+
+.card{
+  position:relative;
+  padding:0;
+  border:none;
+  border-radius:0;
+  background:transparent;
+  box-shadow:none;
+  overflow:visible;
+}
+.card::before, .card-shape { content:none !important; display:none !important; } /* на всякий случай */
+
+.card-img{
+  display:block;
+  width:100%;
+  height:auto;           
+}
+
+/* заголовок внутри, сверху слева */
+.card-title{
+  position:absolute;
+  top:14px;
+  left:18px;
+  margin:0;
+  font-weight:700;
+  z-index:2;
+}
+
+/* кнопка внутри, по центру снизу */
+.card .btn.btn-secondary{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:18px;
+  z-index:2;
+}
+
+/* ================== PRODUCT PAGES ================== */
+.product { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; }
+.product-art { position: relative; }
+.product-copy { color: var(--muted); line-height: 1.6; }
+
+
+
+/* ================== FOOTER ================== */
+/* Фон и общее */
+.footer{
+  position: relative;               /* якорь для абсолютной картинки */
+  background: rgba(241,241,241,1);
+  margin-top: 56px;
+  overflow: hidden;                  
+}
+
+/* Контейнер внутри футера */
+.footer .container{
+  padding-right: 0 !important;
+}
+
+/* Левая колонка текстов: даём запас справа под картинку */
+.footer-inner{
+  position: static;                  /* абсолютная картинка якорится на .footer */
+  display: block;
+  padding: 24px 20px;
+  padding-right: calc(20px + var(--footer-visual-w)); /* место под правый визуал */
+  min-height: 340px;                 /* высота футера = высоте картинки */
+}
+
+/* левая колонка — в колонку*/
+.footer-left{
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* 1) Серую линию тянем до границы с картинкой */
+.footer-rule{
+  width: 100%;                
+  margin: 6px 0 24px;         
+  height: 2px;
+  background: #DADADA;
+  border-radius: 999px;
+}
+
+.footer-brandline{ display:flex; align-items:center; gap:10px; }
+.footer-logo{ height: 36px; width: auto; display: block; object-fit: contain; flex: 0 0 auto; }
+.footer-wordmark{ font-weight: 800; letter-spacing: 0.30em; }
+
+/* 2) Контакты */
+.footer-info{
+  margin-top: 28px;          
+  margin-bottom: 18px;
+  list-style: none;
+  padding: 0;
+  color: var(--muted);
+}
+
+/* 3) © ещё ниже и по центру (в пределах левой колонки) */
+.footer-left small{
+  margin-top: 108px;        
+  align-self: center;         /* по центру по горизонтали */
+  text-align: center;
+  display: block;
+}
+
+
+/* Правая картинка: касается верха/права/низа футера */
+.footer-visual{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--footer-visual-w);
+}
+.footer-image{
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  height: 100%;
+  width: auto;
+  display: block;
+}
+/* Крупнее и полужирным описание товаров (Jenson/Deon/Krisha) */
+.product-copy{
+  font-size: 1.125rem;  /* ~18px */
+  font-weight: 600;     /* полужирный */
+  color: var(--ink);    /* вместо muted, чтобы читалось контрастнее */
+  line-height: 1.55;
+}
+
+/* ================== АДАПТИВ ================== */
+@media (max-width: 900px){
+  .hero-grid, .about-grid, .product, .cards { grid-template-columns: 1fr; }
+  .hero-copy h1 { font-size: 42px; }
+
+  /* секционная шапка: в столбик и без линии */
+  .section-header{ grid-template-columns: 1fr; }
+  .section-header .eyebrow-lg::after{ display:none; }
+  .section-header .ghost{ margin: 8px 0 0 0; font-size: 32px; }
+
+  /* футер — обычный поток, картинка снизу */
+  .footer-inner{
+    padding: 20px;
+    padding-right: 20px;             
+    min-height: unset;
+  }
+  .footer-visual{ position: static; width: 100%; }
+  .footer-image{ position: static; width: 100%; height: auto; margin-top: 16px; }
+}
+
